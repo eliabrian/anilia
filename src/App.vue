@@ -11,8 +11,8 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/about">Disabled</b-nav-item>
+          <b-nav-item to="/" active>Home</b-nav-item>
+          <b-nav-item to="/discover" active>Discover</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
