@@ -1,18 +1,15 @@
 <template>
-  <div class="discover my-4">
+  <div class="discover my-4 container">
     <h4>
-      <b-icon icon="play-fill" variant="primary"></b-icon>
-      Playing This Season
+      <b-icon icon="play-fill" variant="primary"></b-icon>Playing This Season
     </h4>
     <hr />
 
     <div class="row">
       <div class="col-md-3" v-for="anime in season" :key="anime.id">
-        <b-link to="/" class="text-decoration-none text-dark">
+        <b-link :to="'/anime/' + anime.mal_id" class="text-decoration-none text-dark">
           <b-card class="mb-3" :img-src="anime.image_url">
-            <b-card-title class="text-truncate">
-              {{ anime.title }}
-            </b-card-title>
+            <b-card-title class="text-truncate">{{ anime.title }}</b-card-title>
           </b-card>
         </b-link>
       </div>
@@ -34,7 +31,7 @@ export default {
     return {
       date: new Date(),
       season: [],
-      loading: false,
+      loading: false
     };
   },
 
@@ -49,7 +46,7 @@ export default {
       if (month >= 6 && month <= 8) return "summer";
       if (month >= 9 && month <= 11) return "fall";
       return "winter";
-    },
+    }
   },
 
   methods: {
@@ -62,16 +59,16 @@ export default {
             "/" +
             this.currentSeason
         )
-        .then((response) => {
+        .then(response => {
           this.season = response.data.anime.slice(0, 12);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         })
         .finally(() => {
           this.loading = false;
         });
-    },
-  },
+    }
+  }
 };
 </script>

@@ -3,7 +3,7 @@
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div> -->
+    </div>-->
     <b-navbar toggleable="lg" type="dark" variant="primary">
       <b-navbar-brand to="/">Anilia</b-navbar-brand>
 
@@ -16,9 +16,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <div class="container">
-      <router-view />
-    </div>
+    <router-view />
   </div>
 </template>
 
