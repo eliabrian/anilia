@@ -16,7 +16,17 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <router-view />
+    <main role="main">
+      <router-view />
+    </main>
+    <hr />
+    <footer class="footer mt-auto py-3 text-center">
+      <div class="container">
+        Developed by
+        <a href="https://github.com/eliabrian">Elia Brian Baskoro</a> &copy; 2020. Built using
+        <a href="https://jikan.moe/">Jikan API</a>
+      </div>
+    </footer>
   </div>
 </template>
 
