@@ -16,9 +16,10 @@
             </b-media>
             <hr />
             <dl class="row">
-              <dt class="col-md-4">Aired:</dt>
+              <dt class="col-md-4" v-if="!details.aired">Aired:</dt>
+              <dt class="col-md-4" v-else>Airing:</dt>
               <dd class="col-md-8">
-                <b-badge pill variant="secondary" class="mr-2">Jul 6, 2019 to Dec 28, 2019</b-badge>
+                <b-badge pill variant="secondary" class="mr-2">{{details.aired.string}}</b-badge>
               </dd>
 
               <dt class="col-md-4">Rating:</dt>
@@ -26,8 +27,8 @@
                 <b-badge pill variant="danger" class="mr-2">{{ details.rating }}</b-badge>
               </dd>
 
-              <dt class="col-md-4">Producer(s):</dt>
-              <dd class="col-md-8">
+              <dt class="col-md-4" v-if="details.producers.length">Producer(s):</dt>
+              <dd class="col-md-8" v-if="details.producers.length">
                 <b-badge
                   pill
                   variant="warning"
@@ -37,8 +38,8 @@
                 >{{producer.name}}</b-badge>
               </dd>
 
-              <dt class="col-md-4">Licensor(s):</dt>
-              <dd class="col-md-8">
+              <dt class="col-md-4" v-if="details.licensors.length">Licensor(s):</dt>
+              <dd class="col-md-8" v-if="details.licensors.length">
                 <b-badge
                   pill
                   variant="info"
@@ -48,8 +49,8 @@
                 >{{ licensor.name }}</b-badge>
               </dd>
 
-              <dt class="col-md-4">Studio(s):</dt>
-              <dd class="col-md-8">
+              <dt class="col-md-4" v-if="details.studios.length">Studio(s):</dt>
+              <dd class="col-md-8" v-if="details.studios.length">
                 <b-badge
                   pill
                   variant="success"
@@ -70,13 +71,18 @@
                 >{{genre.name}}</b-badge>
               </dd>
 
-              <dt class="col-md-4">Episodes:</dt>
-              <dd class="col-md-8">
-                <b-badge pill variant="dark" class="mr-2">{{ details.episodes }}</b-badge>
+              <dt class="col-md-4" v-if="details.episodes">Episodes:</dt>
+              <dd class="col-md-8" v-if="details.episodes">
+                <b-badge
+                  pill
+                  variant="dark"
+                  class="mr-2"
+                  v-if="details.episodes"
+                >{{ details.episodes }}</b-badge>
               </dd>
 
-              <dt class="col-md-4">Score:</dt>
-              <dd class="col-md-8">
+              <dt class="col-md-4" v-if="details.score">Score:</dt>
+              <dd class="col-md-8" v-if="details.score">
                 {{ details.score }} / 10
                 <b-progress
                   :value="details.score"
@@ -104,6 +110,16 @@
       </div>
 
       <div class="col-md-7">
+        <b-card class="mb-3 shadow-sm">
+          <div v-if="loading" class="text-center">
+            <Loading></Loading>
+          </div>
+          <div v-else>
+            <h3>Trailer</h3>
+            <hr />
+            <b-embed type="iframe" aspect="16by9" :src="details.trailer_url" allowfullscreen></b-embed>
+          </div>
+        </b-card>
         <b-card class="mb-3 shadow-sm">
           <div v-if="loading" class="text-center">
             <Loading></Loading>
